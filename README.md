@@ -8,4 +8,4 @@ Used libs:<br />
 ->FFMPEG (main video functionality)<br />
 ->SDL (Display video, each frame)<br />
 <br />
-P.S. Created and successfully tested in Mac (using XCODE)<br />
+P.S. Created and successfully tested on Mac (using XCODE)<br />
