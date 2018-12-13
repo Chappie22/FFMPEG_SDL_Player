@@ -7,7 +7,7 @@
 //
 
 #include <iostream>
-
+#include <string>
 //FFMPEG
 extern "C"
 {
@@ -38,22 +38,27 @@ void static saveTexture(SDL_Renderer *renderer, SDL_Texture *texture, string fil
 //Main
 int main(int argc, const char * argv[]) {
     
+    int frameRaw;
+    if ((string)argv[2] == "0.5x") frameRaw = 15;
+    else if ((string)argv[2] == "2x") frameRaw = 60;
+    else {
+        cout<<"Incorrect --speed input!"<<endl;
+        frameRaw = 30;
+    }
+    
     string filepath;
-    cout<<"Please enter the videofile path:";
+    cout<<"Please enter the videofile path: ";
     cin>>filepath;
     
     int saveFrame[2];
     saveFrame[0] = 0;
-    cout<<"I using Mac and there no ways (at least i do not know) to catch the button tap\n If it was Windows function (khbit) and (getch) easily solve the problem\n So, please enter the num of frame you want to save (It will save when you get to this frame)";
+    cout<<"I using Mac and there no ways (at least i do not know) to catch the button tap.\nIf it was Windows function (kbhit) and (getch) easily solve the problem.\nSo, please enter the num of frame you want to save (It will save when you get to this frame): ";
     cin>>saveFrame[1];
     
     string saveFramePath;
-    cout<<"Please, enter the frame path:";
+    cout<<"Please, enter the frame path: ";
     cin>>saveFramePath;
-    
-    string raw;
-    cout<<"Finally, enter the videoplay raw (0,5x | 1x | 2x)";
-    cin>>raw;
+    saveFramePath += "/screenshot.bmp";
     
     
     
@@ -129,14 +134,14 @@ int main(int argc, const char * argv[]) {
         return -1;
     }
     
-    ///Users/kirill/Library/Developer/Xcode/DerivedData/FFMPEG_SDL_Videoplayer-flsvzhdifvrautcnxunqdwodgzof/Build/Products/Debug/FFMPEG_SDL Videoplayer
+    
     
     //Creating screen using SDL
     SDL_Window *screen = SDL_CreateWindow("Video Player",
-                              SDL_WINDOWPOS_UNDEFINED,
-                              SDL_WINDOWPOS_UNDEFINED,
-                              codecContext->width, codecContext->height,
-                              SDL_WINDOW_OPENGL);
+                                          SDL_WINDOWPOS_CENTERED,
+                                          SDL_WINDOWPOS_CENTERED,
+                                          codecContext->width, codecContext->height,
+                                          SDL_WINDOW_OPENGL);
     
     
     
@@ -152,15 +157,16 @@ int main(int argc, const char * argv[]) {
     
     
     //video context
-
+    
     
     //
     AVPacket packet;
     
-    //lendo e colocando no packet
+    //video context
+    
     while (av_read_frame(formatContext, &packet) >= 0) {
         
-
+        
         //If the stream i want to use, the same, as i found
         if (packet.stream_index == videoStream) {
             
@@ -183,18 +189,17 @@ int main(int argc, const char * argv[]) {
             SDL_RenderCopy(renderer, bmp, NULL, NULL);
             SDL_RenderPresent(renderer);
             SDL_UpdateWindowSurface(screen);
-            SDL_Delay(1000/30);
+            SDL_Delay(1000/frameRaw);
             
             saveFrame[0]++;
             if (saveFrame[0] == saveFrame[1])
             {
-                saveTexture(renderer, bmp, filepath);
+                saveTexture(renderer, bmp, saveFramePath);
             }
-            
             
         }
     }
-  
+    
     av_free(buffer);
     
     // Free the YUV frame
@@ -205,6 +210,8 @@ int main(int argc, const char * argv[]) {
     
     // Close the video file
     avformat_close_input(&formatContext);
+    
+    
     
     return 0;
 }
