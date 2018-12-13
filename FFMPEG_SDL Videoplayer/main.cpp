@@ -12,20 +12,6 @@
 
 using namespace std;
 
-////BMP saving function using SDL
-//void static saveTexture(SDL_Renderer *renderer, SDL_Texture *texture, string filename)
-//{
-//    SDL_Texture* target = SDL_GetRenderTarget(renderer);
-//    SDL_SetRenderTarget(renderer, texture);
-//    int width, height;
-//    SDL_QueryTexture(texture, NULL, NULL, &width, &height);
-//    SDL_Surface* surface = SDL_CreateRGBSurface(0, width, height, 32, 0, 0, 0, 0);
-//    SDL_RenderReadPixels(renderer, NULL, surface->format->format, surface->pixels, surface->pitch);
-//    SDL_SaveBMP(surface, filename.c_str());
-//    SDL_FreeSurface(surface);
-//    SDL_SetRenderTarget(renderer, target);
-//}
-
 int ARGV_CheckRaw(const char * argv[])
 {
     if ((string)argv[2] == "0.5x") return 15;
