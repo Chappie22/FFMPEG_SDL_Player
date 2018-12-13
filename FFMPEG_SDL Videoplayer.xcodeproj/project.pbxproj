@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ED03302D21C1D20800F021BD /* VideoPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED03302B21C1D20800F021BD /* VideoPlayer.cpp */; };
 		ED345F4721C04B4900A8F13D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED345F4621C04B4900A8F13D /* main.cpp */; };
 		ED345F5621C04B9100A8F13D /* libavutil.56.22.100.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ED345F4D21C04B9000A8F13D /* libavutil.56.22.100.dylib */; };
 		ED345F5721C04B9100A8F13D /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ED345F4E21C04B9000A8F13D /* libSDL2-2.0.0.dylib */; };
@@ -32,6 +33,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		ED03302B21C1D20800F021BD /* VideoPlayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = VideoPlayer.cpp; sourceTree = "<group>"; };
+		ED03302C21C1D20800F021BD /* VideoPlayer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = VideoPlayer.hpp; sourceTree = "<group>"; };
 		ED345F4321C04B4900A8F13D /* FFMPEG_SDL Videoplayer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "FFMPEG_SDL Videoplayer"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED345F4621C04B4900A8F13D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		ED345F4D21C04B9000A8F13D /* libavutil.56.22.100.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libavutil.56.22.100.dylib; path = ../../../../usr/local/Cellar/ffmpeg/4.1/lib/libavutil.56.22.100.dylib; sourceTree = "<group>"; };
@@ -94,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				ED345F4621C04B4900A8F13D /* main.cpp */,
+				ED03302B21C1D20800F021BD /* VideoPlayer.cpp */,
+				ED03302C21C1D20800F021BD /* VideoPlayer.hpp */,
 			);
 			path = "FFMPEG_SDL Videoplayer";
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED03302D21C1D20800F021BD /* VideoPlayer.cpp in Sources */,
 				ED345F4721C04B4900A8F13D /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
