@@ -2,7 +2,7 @@
 Video player created using FFMPEG and SDL<br />
 <br />
 This project allows to: <br />
-->Decode and to diaplay the video;<br />
+->Decode and to display the video;<br />
 ->Save frame (frame number should be mentioned) <br />
 ->Change video raw (0,5x, 1x, 2x)<br />
 
