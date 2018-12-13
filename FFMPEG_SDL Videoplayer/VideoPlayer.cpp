@@ -47,7 +47,7 @@ void VideoPlayer::FindStreamAndDecode()
     //Format Data
     int inf = avformat_open_input(&formatContext, videoPath.c_str(), NULL, NULL); //Gets metadata of file (video)
     if (inf != 0) throw invalid_argument("Open file error");
-        
+    
     //Info about all streams
     av_dump_format(formatContext, 0, videoPath.c_str(), 0); //Displays stream data
     
@@ -69,7 +69,7 @@ void VideoPlayer::FindStreamAndDecode()
     if(inf < 0){
         avformat_close_input(&formatContext);
         avcodec_free_context(&codecContext);
-        throw invalid_argument("Failed to get video codec");        
+        throw invalid_argument("Failed to get video codec");
     }
     
     //Fill the codec context based on the values from the supplied codec parameters
@@ -100,10 +100,10 @@ void VideoPlayer::CreateAndConfigureSDLWindow()
     
     //Creating screen using SDL
     screen = SDL_CreateWindow("Video Player",
-                                          SDL_WINDOWPOS_CENTERED,
-                                          SDL_WINDOWPOS_CENTERED,
-                                          codecContext->width, codecContext->height,
-                                          SDL_WINDOW_OPENGL);
+                              SDL_WINDOWPOS_CENTERED,
+                              SDL_WINDOWPOS_CENTERED,
+                              codecContext->width, codecContext->height,
+                              SDL_WINDOW_OPENGL);
     if (!screen) throw invalid_argument("Creating window error");
     renderer = SDL_CreateRenderer(screen, -1, 0);
     bmp = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_YV12, SDL_TEXTUREACCESS_STATIC, codecContext->width, codecContext->height);
@@ -112,7 +112,7 @@ void VideoPlayer::CreateAndConfigureSDLWindow()
 void VideoPlayer::PlayVideo()
 {
     AVPacket packet;
-    
+    SDL_Event event; //creating main buttons and possibility to move window
     //video context
     while (av_read_frame(formatContext, &packet) >= 0) {
         
@@ -130,7 +130,7 @@ void VideoPlayer::PlayVideo()
                 continue;
             }
             
-
+            
             SDL_UpdateYUVTexture(bmp, NULL, frame->data[0], frame->linesize[0],
                                  frame->data[1], frame->linesize[1],
                                  frame->data[2], frame->linesize[2]);
@@ -147,6 +147,7 @@ void VideoPlayer::PlayVideo()
             }
             
         }
+        SDL_PollEvent(&event);
     }
 }
 
@@ -162,12 +163,12 @@ void VideoPlayer::SaveTexture()
     SDL_FreeSurface(surface);
     SDL_SetRenderTarget(renderer, target);
 }
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
 
 
